@@ -1,0 +1,15 @@
+#!/bin/bash
+
+g++ -Wall ./cpp/TexCorrector.cpp -o ./cpp/TexCorrector
+
+find "$1"/ -type f | while read i;
+do
+    if [[ "$i" == *.md ]]
+    then
+        cp "$i" "$i"\(1\)
+
+        ./cpp/TexCorrector change_command "$i"\(1\) "$i"
+
+        rm "$i"\(1\)
+    fi
+done

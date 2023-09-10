@@ -2,6 +2,8 @@
 
 rm -r $3/`head -n 1 hierarchy/$2`
 rm -r $3/`head -n 1 hierarchy/$2`.md
+rm -r `head -n 1 hierarchy/$2`
+rm -r `head -n 1 hierarchy/$2`.md
 
 zipinfo -2 $1 > FilesPath
 
@@ -11,6 +13,12 @@ rm FilesPath
 
 cat hierarchy/$2 | while read i;
 do
+    echo $i
+done
+
+cat hierarchy/$2 | while read i;
+do
+    echo $i
     mkdir "$i"
 done
 
@@ -35,4 +43,5 @@ done
 
 rm CorrectFilesPath
 
+mkdir $3
 mv `head -n 1 hierarchy/$2`.md ./`head -n 1 hierarchy/$2` $3
